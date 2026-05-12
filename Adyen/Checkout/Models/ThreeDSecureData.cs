@@ -160,7 +160,7 @@ namespace Adyen.Checkout.Models
                 if (value == AuthenticationResponseEnum.A)
                     return "A";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -342,7 +342,7 @@ namespace Adyen.Checkout.Models
                 if (value == ChallengeCancelEnum._07)
                     return "07";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -533,7 +533,7 @@ namespace Adyen.Checkout.Models
                 if (value == DirectoryResponseEnum.Y)
                     return "Y";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -777,7 +777,7 @@ namespace Adyen.Checkout.Models
                     {
                         case "authenticationResponse":
                             string? authenticationResponseRawValue = utf8JsonReader.GetString();
-                            authenticationResponse = new Option<ThreeDSecureData.AuthenticationResponseEnum?>(ThreeDSecureData.AuthenticationResponseEnum.FromStringOrDefault(authenticationResponseRawValue));
+                            authenticationResponse = new Option<ThreeDSecureData.AuthenticationResponseEnum?>(ThreeDSecureData.AuthenticationResponseEnum.FromStringOrDefault(authenticationResponseRawValue) ?? (ThreeDSecureData.AuthenticationResponseEnum)authenticationResponseRawValue);
                             break;
                         case "cavv":
                             cavv = new Option<byte[]?>(new ByteArrayConverter().Read(ref utf8JsonReader, typeof(byte[]), jsonSerializerOptions));
@@ -787,11 +787,11 @@ namespace Adyen.Checkout.Models
                             break;
                         case "challengeCancel":
                             string? challengeCancelRawValue = utf8JsonReader.GetString();
-                            challengeCancel = new Option<ThreeDSecureData.ChallengeCancelEnum?>(ThreeDSecureData.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue));
+                            challengeCancel = new Option<ThreeDSecureData.ChallengeCancelEnum?>(ThreeDSecureData.ChallengeCancelEnum.FromStringOrDefault(challengeCancelRawValue) ?? (ThreeDSecureData.ChallengeCancelEnum)challengeCancelRawValue);
                             break;
                         case "directoryResponse":
                             string? directoryResponseRawValue = utf8JsonReader.GetString();
-                            directoryResponse = new Option<ThreeDSecureData.DirectoryResponseEnum?>(ThreeDSecureData.DirectoryResponseEnum.FromStringOrDefault(directoryResponseRawValue));
+                            directoryResponse = new Option<ThreeDSecureData.DirectoryResponseEnum?>(ThreeDSecureData.DirectoryResponseEnum.FromStringOrDefault(directoryResponseRawValue) ?? (ThreeDSecureData.DirectoryResponseEnum)directoryResponseRawValue);
                             break;
                         case "dsTransID":
                             dsTransID = new Option<string?>(utf8JsonReader.GetString()!);
