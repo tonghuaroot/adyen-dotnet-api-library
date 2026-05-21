@@ -141,7 +141,7 @@ namespace Adyen.Payment.Models
                 if (value == EntityTypeEnum.CompanyName)
                     return "CompanyName";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -287,7 +287,7 @@ namespace Adyen.Payment.Models
                 if (value == FundingSourceEnum.Prepaid)
                     return "prepaid";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -433,7 +433,7 @@ namespace Adyen.Payment.Models
                 if (value == RecurringProcessingModelEnum.UnscheduledCardOnFile)
                     return "UnscheduledCardOnFile";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -588,7 +588,7 @@ namespace Adyen.Payment.Models
                 if (value == ShopperInteractionEnum.POS)
                     return "POS";
                 
-                return null;
+                return value.Value;
             }
             
             /// <summary>
@@ -1509,7 +1509,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "entityType":
                             string? entityTypeRawValue = utf8JsonReader.GetString();
-                            entityType = new Option<PaymentRequest.EntityTypeEnum?>(PaymentRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue));
+                            entityType = new Option<PaymentRequest.EntityTypeEnum?>(PaymentRequest.EntityTypeEnum.FromStringOrDefault(entityTypeRawValue) ?? (PaymentRequest.EntityTypeEnum)entityTypeRawValue);
                             break;
                         case "fraudOffset":
                             fraudOffset = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -1522,7 +1522,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "fundingSource":
                             string? fundingSourceRawValue = utf8JsonReader.GetString();
-                            fundingSource = new Option<PaymentRequest.FundingSourceEnum?>(PaymentRequest.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue));
+                            fundingSource = new Option<PaymentRequest.FundingSourceEnum?>(PaymentRequest.FundingSourceEnum.FromStringOrDefault(fundingSourceRawValue) ?? (PaymentRequest.FundingSourceEnum)fundingSourceRawValue);
                             break;
                         case "installments":
                             installments = new Option<Installments?>(JsonSerializer.Deserialize<Installments>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1562,7 +1562,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "recurringProcessingModel":
                             string? recurringProcessingModelRawValue = utf8JsonReader.GetString();
-                            recurringProcessingModel = new Option<PaymentRequest.RecurringProcessingModelEnum?>(PaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue));
+                            recurringProcessingModel = new Option<PaymentRequest.RecurringProcessingModelEnum?>(PaymentRequest.RecurringProcessingModelEnum.FromStringOrDefault(recurringProcessingModelRawValue) ?? (PaymentRequest.RecurringProcessingModelEnum)recurringProcessingModelRawValue);
                             break;
                         case "secureRemoteCommerceCheckoutData":
                             secureRemoteCommerceCheckoutData = new Option<SecureRemoteCommerceCheckoutData?>(JsonSerializer.Deserialize<SecureRemoteCommerceCheckoutData>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1584,7 +1584,7 @@ namespace Adyen.Payment.Models
                             break;
                         case "shopperInteraction":
                             string? shopperInteractionRawValue = utf8JsonReader.GetString();
-                            shopperInteraction = new Option<PaymentRequest.ShopperInteractionEnum?>(PaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue));
+                            shopperInteraction = new Option<PaymentRequest.ShopperInteractionEnum?>(PaymentRequest.ShopperInteractionEnum.FromStringOrDefault(shopperInteractionRawValue) ?? (PaymentRequest.ShopperInteractionEnum)shopperInteractionRawValue);
                             break;
                         case "shopperLocale":
                             shopperLocale = new Option<string?>(utf8JsonReader.GetString()!);
